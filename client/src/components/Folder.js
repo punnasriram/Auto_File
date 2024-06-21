@@ -7,7 +7,7 @@ export default function Folder() {
   const [openFolders, setOpenFolders] = useState({});
   const [folderFiles, setFolderFiles] = useState({});
 
-  const folders = ['Exam', 'Sports', 'Events', 'Holidays'];
+  const folders = ['Exam', 'Sports', 'Events', 'Holidays', 'Other'];
 
   const fetchFolderData = async (folder) => {
     try {

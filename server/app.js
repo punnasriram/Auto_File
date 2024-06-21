@@ -47,6 +47,7 @@ const exam = mongoose.model("Exams",PdfDetailsSchema)
 const sports = mongoose.model("Sports",PdfDetailsSchema)
 const events = mongoose.model("Events",PdfDetailsSchema)
 const holidays = mongoose.model("Holidays",PdfDetailsSchema)
+const other = mongoose.model("Other",PdfDetailsSchema)
 const authorize = mongoose.model("Authorize",auth)
 
 const upload = multer({ storage: storage });
@@ -59,35 +60,56 @@ app.post("/upload-files", upload.single("file"), async (req, res) => {
   const bh = sep.toString().trim();
   console.log(bh)
       if(bh == "Exam"){
-        console.log(bh)
-        await exam.create({ title: title, pdf: fileName });
-        res.send({ status: "ok" });
-        console.log('success');
-    }
- else if(bh=="Sports"){
-      try{
-        console.log("success sports")
-         await sports.create({ title: title, pdf: fileName });
-      res.send({ status: "ok" });
-  }catch{}
-}
-  else if(bh=="Event"){
-    try{
-       await events.create({ title: title, pdf: fileName });
-      res.send({ status: "ok" });
-
-    }catch{}
-  }
-  else if(bh=="Holiday"){
-    try{
-      await holidays.create({ title: title, pdf: fileName });
-      res.send({ status: "ok" });
-
-    }catch{}
-  }
-  else{
-    console.log("not found!!")
-  }
+        try{
+          console.log("Success Exam")
+            await sports.create({ title: title, pdf: fileName });
+            res.send({ status: "ok" });
+          }
+        catch{}
+      }
+      else if(bh=="Sports"){
+        try{
+          console.log("Success Sports")
+            await sports.create({ title: title, pdf: fileName });
+            res.send({ status: "ok" });
+         }
+        catch{}
+      }
+      else if(bh=="Event"){
+        try{
+          console.log("Success Event")
+            await events.create({ title: title, pdf: fileName });
+            res.send({ status: "ok" }); 
+          }
+        catch{}
+      }
+      else if(bh=="Holiday"){
+        try{
+          console.log("Success Holiday")
+          await holidays.create({ title: title, pdf: fileName });
+          res.send({ status: "ok" });
+          }
+        catch{}
+      }
+      else if(bh=="Holiday"){
+        try{
+          console.log("Success Holiday")
+          await holidays.create({ title: title, pdf: fileName });
+          res.send({ status: "ok" });
+          }
+        catch{}
+      }
+      else if(bh=="Other"){
+        try{
+          console.log("Success")
+          await other.create({ title: title, pdf: fileName });
+          res.send({ status: "ok" });
+          }
+        catch{}
+      }
+      else{
+          console.log("not found!!")
+      }
 
 });
 app.post('/auth', async (req, res) => {
@@ -159,6 +181,14 @@ app.get("/get-sportsFiles", async (req, res) => {
 app.get("/get-eventsFiles", async (req, res) => {
   try {
     events.find({}).then((data) => {
+      res.send({ status: "ok", data: data });
+
+    });
+  } catch (error) {}
+});
+app.get("/get-otherFiles", async (req, res) => {
+  try {
+    other.find({}).then((data) => {
       res.send({ status: "ok", data: data });
 
     });

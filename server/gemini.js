@@ -21,7 +21,7 @@ async function run(pra) {
   // For text-and-image input (multimodal), use the gemini-pro-vision model
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
-  const prompt = "give only one word answer The image is of a circulam specify which among the following categories does the circulam fall under they are whether Exam,Sports,Event,Holiday give the output with out any spaces ";
+  const prompt = "Provide a single-word answer categorizing the circular image: Exam, Sports, Event, Holiday or Other without spaces in the output.";
 
 
   const yed ="./files/"+pra
