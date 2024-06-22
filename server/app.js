@@ -62,7 +62,7 @@ app.post("/upload-files", upload.single("file"), async (req, res) => {
       if(bh == "Exam"){
         try{
           console.log("Success Exam")
-            await sports.create({ title: title, pdf: fileName });
+            await exam.create({ title: title, pdf: fileName });
             res.send({ status: "ok" });
           }
         catch{}
@@ -89,15 +89,7 @@ app.post("/upload-files", upload.single("file"), async (req, res) => {
           await holidays.create({ title: title, pdf: fileName });
           res.send({ status: "ok" });
           }
-        catch{}
-      }
-      else if(bh=="Holiday"){
-        try{
-          console.log("Success Holiday")
-          await holidays.create({ title: title, pdf: fileName });
-          res.send({ status: "ok" });
-          }
-        catch{}
+        catch{}  
       }
       else if(bh=="Other"){
         try{
